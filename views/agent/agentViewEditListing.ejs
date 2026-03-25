@@ -1,0 +1,160 @@
+<style>
+    :root {
+        --primary: #039781;
+        --primary-hover: #038d81;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #1e293b;
+        --border: #e2e8f0;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+
+    }
+
+    .form-container {
+        padding: 2.5rem;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 650px;
+       margin-top: -30px;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        border-bottom: 2px solid var(--bg);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 1.5rem;
+    }
+
+    
+    .full-width { grid-column: span 2; }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    input, textarea, select {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: #fff;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+        font-family: inherit;
+
+    }
+
+    button {
+        grid-column: span 2;
+        background: var(--primary);
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    button:hover { background: var(--primary-hover); }
+
+  
+    @media (max-width: 600px) {
+        form { grid-template-columns: 1fr; }
+        .full-width { grid-column: span 1; }
+        button { grid-column: span 1; }
+    }
+</style>
+
+<div class="form-container">
+  <a href="/agent/listings"  style="margin-bottom: 20px; display: inline-block; color: #323232; text-decoration: none;">Back</a>
+    <h2>Edit Property Listing</h2>
+    <form action="/agent/view/listings/<%= listing.id %>" method="POST">
+        
+        <div class="input-group full-width">
+            <label>Title</label>
+            <input name="editTitle" type="text" value="<%= listing.title %>" placeholder="e.g. Modern Suburban Home">
+        </div>
+
+        <div class="input-group">
+            <label>Price (Amount)</label>
+            <input name="editNumber" type="number" value="<%= listing.amount %>" placeholder="250000">
+        </div>
+
+        <div class="input-group">
+            <label>Property Type</label>
+            <input name="editType" type="text" value="<%= listing.housetype %>" placeholder="e.g. Duplex">
+        </div>
+
+        <div class="input-group full-width">
+            <label>Address</label>
+            <input name="editAddress" type="text" value="<%= listing.address %>" placeholder="Street name and number">
+        </div>
+
+        <div class="input-group">
+            <label>State</label>
+            <input name="editState" type="text" value="<%= listing.state %>">
+        </div>
+
+        <div class="input-group">
+            <label>City</label>
+            <input name="editCity" type="text" value="<%= listing.city %>">
+        </div>
+
+        <div class="input-group full-width">
+            <label>Features & Description</label>
+            <textarea name="editFeatures" placeholder="Mention pool, garage, rooms..."><%= listing.features %></textarea>
+        </div>
+
+        <div class="input-group full-width">
+            <label>Availability Status</label>
+            <select name="editStatus">
+                <% const statuses = ['Available', 'Sold']; %>
+                <% statuses.forEach(status => { %>
+                    <option value="<%= status %>" <%= listing.house_status === status ? 'selected' : '' %>> 
+                        <%= status %> 
+                    </option>
+                <% }); %>
+            </select>
+        </div>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

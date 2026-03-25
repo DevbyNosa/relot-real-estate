@@ -1,0 +1,187 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  /* Typograpjhy */
+  --h6: 1.6rem;
+  --h5: 2.4rem;
+  --h4: 3rem;
+  --h3: 3.6rem;
+  --h2: 4.2rem;
+  --h1: 4.8rem;
+
+  /* default font size */
+  --font: 1.6rem;
+  --sm-font: 1.2rem;
+
+  /* colors & bg */
+  --secondary-color: #f2f1f1;
+  --color: #212121;
+  --tetiary-color: #02bda7;
+  --bg-primary: /*#03c403*/ #029281;
+  --bg-secondary: #dfdede;
+  --bg-tetiary: #292828;
+
+  /* weight */
+
+  --font-weight: 400;
+  --lg-font-weight: 600; 
+
+  /* height & spacing txt */
+  --li-ht: -2px;
+  }
+
+ html,body {
+   scroll-behavior: smooth;
+   scroll-padding: 20rem;
+ }
+  body {
+    font-family: 'Poppins',sans-serif;
+    font-weight: var(--font-weight);
+    color: var(--color);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+   line-height: var(--li-ht);
+  }
+
+  h1 {
+    font-size: var(--h1);
+  }
+
+  h2 {
+    font-size: var(--h2);
+  }
+
+  h3 {
+    font-size: var(--h3);
+  }
+
+  h4 {
+    font-size: var(--h4);
+  }
+
+  h5 {
+    font-size: var(--h5);
+  }
+
+  h6 {
+    font-size: var(--h6);
+  }
+
+  p {
+    font-size: var(--font);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  li {
+    font-size: var(--font);
+  }
+
+  .btn {
+    font-weight: var(--lg-font-weight);
+    cursor: pointer;
+    display: inline-block;
+    font-size: var(--font);
+    padding: 11px 30px;
+    min-width: 15rem;
+    text-align: center;
+    border-radius: 0.5rem;
+
+  }
+
+ 
+
+  .btn-l, .btn-s {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .hidden-btn {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  .btn-secondary, .btn-s {
+    color: var(--tetiary-color);
+    border: 1.5px solid var(--bg-primary);
+  }
+
+  .btn-primary, .btn-l, .hidden-btn {
+    color: var(--secondary-color);
+   background-color: var(--bg-primary);
+  }
+
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    border: 1.5px solid var(--bg-primary); /* the first btn-secondray doesnt work so i created new one */
+  }
+
+  
+html {
+  font-size: 62.5%;
+}
+
+
+/* for relot logo */
+
+.relot-logo {
+  width: 5rem;
+  height: 5rem;
+  margin-left: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+::-webkit-scrollbar {
+  width: 7px; 
+}
+
+::-webkit-scrollbar {
+  height: 4px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dashboard-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.mgmt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--bg-secondary);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+

@@ -1,0 +1,85 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<style>
+    .content-card {
+        background: #ffffff;
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+    .form-control:focus {
+        border-color: #198754;
+        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+    }
+</style>
+
+<div class="container-fluid px-4">
+    <!-- Breadcrumbs -->
+    <div class="mt-4 mb-3">
+        <h4 class="fw-bold">Hero Section</h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/dashboard" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Hero</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Main Card -->
+    <section class="content-card shadow-sm border p-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+            <h5 class="m-0 text-secondary">Edit Content</h5>
+            <a class="btn btn-outline-secondary btn-sm" href="/admin/dashboard">
+                <i class="bi bi-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <form action="/admin/frontend/home" method="POST" class="row g-4">
+            <!-- Title -->
+            <div class="col-12">
+                <label for="title" class="form-label">Main Title</label>
+                <input class="form-control" type="text" name="frontend_title" id="title" placeholder="Enter hero title..." maxlength="100" value="<%= hero.hero_title %>">
+            </div>
+
+            <!-- Description -->
+            <div class="col-12">
+                <label for="desc" class="form-label">Short Description</label>
+                <textarea class="form-control" name="frontend_description" id="desc" rows="3" placeholder="Write a brief intro..." maxlength="150"><%= hero.hero_text%></textarea>
+            </div>
+
+            <!-- Buttons Group -->
+            <div class="col-md-6">
+                <label class="form-label">First Button Text</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-cursor"></i></span>
+                    <input type="text" class="form-control" name="first_button" placeholder="e.g. Learn More" maxlength="50" value="<%= hero.first_button %>">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Second Button Text</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-link-45deg"></i></span>
+                    <input type="text" class="form-control" name="second_button" placeholder="e.g. Get Started" maxlength="50" value="<%= hero.second_button %>">
+                </div>
+            </div>
+
+         
+            <div class="col-12 mt-5 border-top pt-4">
+                <button type="submit" class="btn btn-success px-4">Update Hero</button>
+                <button type="reset" class="btn btn-light px-4 border">Cancel</button>
+            </div>
+        </form>
+
+          <%if(locals.success) { %>
+         <div class="success-msg">
+            <%= success %>
+         </div>
+     <% } %>
+    </section>
+</div>
+
+<%- include("../partials/admin/footer.ejs") %>

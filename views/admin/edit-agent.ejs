@@ -1,0 +1,76 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<main class="container-fluid mt-5 mb-5">
+<div class="row justify-content-center">
+<div class="col-12 col-xl-10">
+<div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 20px;">
+<div class="row g-0">
+<!-- Left Sidebar Profile Summary -->
+<div class="col-lg-4 bg-dark p-5 text-white d-flex flex-column justify-content-between">
+<div>
+<div class="mb-4 position-relative d-inline-block">
+<img src="https://ui-avatars.com" class="rounded-circle border border-4 border-primary shadow" alt="Agent" width="128">
+<span class="position-absolute bottom-0 end-0 bg-success border border-white border-2 rounded-circle p-2" title="Online Status"></span>
+</div>
+<h3 class="fw-bold mb-1">Agent Profile</h3>
+<p class="text-secondary small">Manage professional credentials and listings performance.</p>
+<hr class="my-4 opacity-25">
+
+</div>
+<div class="mt-auto">
+<div class="p-3 bg-white bg-opacity-10 rounded-3">
+<small class="d-block text-secondary">Member Since</small>
+<span class="fw-bold text-primary">  <%= new Date(agent.date).toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+  }) %>  %></span>
+</div>
+</div>
+</div>
+
+<!-- Right Side Form -->
+<div class="col-lg-8 bg-white p-4 p-md-5">
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h2 class="h4 fw-bold text-dark mb-0">Professional Details</h2>
+<a href="/admin/agents" class="btn-close" aria-label="Close"></a>
+</div>
+<form action="/admin/agents/<%= agent.id %>" method="POST">
+<div class="row g-3">
+
+<div class="col-md-6 mb-3">
+<label class="form-label fw-bold small">USERNAME</label>
+<div class="input-group">
+<span class="input-group-text bg-light border-0 text-muted">@</span>
+<input type="text" class="form-control form-control-lg bg-light border-0 fs-6" name="agent_username" value="<%= 
+agent.username %>" required>
+</div>
+</div>
+
+<div class="col-md-6 mb-3">
+<label class="form-label fw-bold small">PHONE NUMBER</label>
+<input type="tel" class="form-control form-control-lg bg-light border-0 fs-6" name="agent_phone" value="<%= 
+agent.phone %>">
+</div>
+
+
+</div>
+<hr class="my-4">
+<div class="d-flex align-items-center justify-content-between">
+
+<div class="d-flex gap-2">
+<a href="/admin/agents" class="btn btn-light px-4 fw-bold">Cancel</a>
+<button type="submit" class="btn btn-success px-4 fw-bold shadow">Save Agent Data</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<p class="text-center text-muted mt-4 small">Internal ID Reference: <span class="badge bg-secondary-subtle text-secondary fw-normal">AGT-<%= agent.id %></span></p>
+</div>
+</div>
+</main>
+
+
+<%- include("../partials/admin/footer.ejs") %>

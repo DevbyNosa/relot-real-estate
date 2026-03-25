@@ -1,0 +1,148 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<main class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Pending Approvals</h1>
+                <span class="badge bg-warning text-dark">
+                    <%= agentPost.filter(post => !post.is_approved).length %> Pending Listings
+                </span>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4 py-3">ID</th>
+                                    <th class="py-3">Agent</th>
+                                    <th class="py-3">Title</th>
+                                    <th class="py-3">Images</th> 
+                                    <th class="py-3">Date</th>
+                                    <th class="py-3">Amount</th>
+                                    <th class="py-3 text-end pe-4">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+<% if (agentPost.length > 0) { %>
+<% agentPost.forEach(post => { %>
+<tr>
+<td class="ps-4"><%= post.id %></td>
+<td>
+<div class="fw-bold"><%= post.username %></div>
+<small class="text-muted"><%= post.phone %></small>
+</td>
+<td>
+<strong><%= post.title %></strong><br>
+<small class="text-muted"><%= post.houseType %></small>
+</td>
+
+
+<td>
+<% if (post.property_images) { %>
+<% 
+let images = [];
+try {
+images = JSON.parse(post.property_images);
+} catch(e) {
+images = [];
+}
+%>
+
+<div class="image-preview-strip">
+<% if (images.length > 0) { %>
+<% images.forEach((img, index) => { %>
+<div class="thumbnail-wrapper" 
+onclick="openImageModal('<%= img %>')"
+title="Image <%= index + 1 %>">
+<img src="<%= img %>" 
+    alt="Property image <%= index + 1 %>"
+                        class="thumbnail-img">
+                <span class="img-count-badge"><%= index + 1 %></span>
+            </div>
+        <% }) %>
+        
+                                                            <!-- Show count badge -->
+                                                            <div class="total-badge">
+                                                                <%= images.length %> photo<%= images.length > 1 ? 's' : '' %>
+                                                            </div>
+                                                        <% } else { %>
+                                                            <span class="text-muted">No images</span>
+                                                        <% } %>
+                                                    </div>
+                                                <% } else { %>
+                                                    <span class="text-muted">No images</span>
+                                                <% } %>
+                                            </td>
+                                            
+                                            <td><%= new Date(post.created_at).toLocaleDateString() %></td>
+                                            <td>₦<%= Number(post.amount).toLocaleString() %></td>
+                                            
+                                            <td class="text-end pe-4">
+                                                <div class="d-inline-flex gap-2">
+                                                    <% if (post.is_approved) { %>
+                                                        <span class="badge bg-light text-success px-3 py-2 border">
+                                                            <i class="bi bi-check-lg"></i> Approved
+                                                        </span>
+                                                    <% } else { %>
+                                                        <form action="/admin/listings/<%= post.id %>" method="POST" style="display:inline;">
+                                                            <button type="submit" class="btn btn-success btn-sm">
+                                                                <i class="bi bi-check-circle"></i> Approve
+                                                            </button>
+                                                        </form>
+                                                    <% } %>
+
+                                                    <form action="/admin/listings/delete/<%= post.id %>" method="POST" style="display:inline;" 
+                                                          onsubmit="return confirm('Delete this listing?')">
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4 text-muted">
+                                            No pending listings found.
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Image Modal for larger preview -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="" id="modalImage" class="img-fluid" style="max-height: 70vh;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function openImageModal(imageSrc) {
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        document.getElementById('modalImage').src = imageSrc;
+        modal.show();
+    }
+</script>
+
+<%- include("../partials/admin/footer.ejs") %>

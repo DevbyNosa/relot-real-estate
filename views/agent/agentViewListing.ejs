@@ -1,0 +1,58 @@
+<%- include("../partials/agent/header.ejs") %>
+
+<div class="dashboard-container">
+<div class="mgmt-header">
+<h2 style="font-size: 25px; margin-top: 3rem;">My Active Listings</h2>
+<span style="font-size: 15px; margin-top: 3rem;" class="count-badge"><%= listings ? listings.length : 0 %> Total</span>
+</div>
+
+<% if (listings && listings.length > 0) { %>
+<% listings.forEach(listing => { %>
+<% 
+let images = [];
+try {
+    images = JSON.parse(listing.property_images || '[]');
+} catch(e) {
+    images = [];
+}
+const date = new Date(listing.created_at).toLocaleDateString();
+%>
+
+
+<% if (listing.is_approved === true) { %>
+<div class="listing-row">
+    <div class="listing-info">
+        <img src="<%= images.length > 0 ? images[0] : '/images/placeholder.jpg' %>" 
+            alt="Property" class="row-img">
+        
+        <div class="text-meta" style="display: flex; flex-direction: column; gap: 7px;">
+            <h3><%= listing.title %></h3>
+            <p style="font-size: 14px;"><i class="fas fa-map-marker-alt"></i> <%= listing.city %>, <%= listing.state %></p>
+            <span class="price-tag" style="font-size: 14px;">₦<%= Number(listing.amount).toLocaleString() %></span>
+        </div>
+    </div>
+
+    <div class="listing-status">
+        <span style="
+            display: inline-block; margin-bottom: 7px;" class="status-pill <%= listing.house_status %>">
+            <%= listing.house_status === 'available' ? 'Available' : 'Sold' %>
+        </span>
+        <p class="date-added">Added: <%= date %></p>
+    </div>
+
+    <div class="action-buttons">
+        <a style="min-width: 20px; font-size: 14px; display: flex;align-items: center;" href="/agent/view/listings/<%= listing.id %>" class="btn edit-btn"><i class="fas fa-edit"></i> Edit</a>
+    <a style="min-width: 30px; font-size: 14px;" href="/agent/view/listings/del/<%= listing.id %>" class="btn delete-btn">
+<i class="fas fa-trash"></i>
+</a>
+
+    </div>
+</div>
+<% } %>
+<% }) %>
+<% } else { %>
+<p>No listings found</p>
+<% } %>
+</div>
+
+<%- include("../partials/agent/footer.ejs") %>

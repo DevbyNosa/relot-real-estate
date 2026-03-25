@@ -1,0 +1,59 @@
+<%- include('./partials/client/header.ejs') %>
+
+<style>
+    /* Use a wrapper so header/footer stay at top/bottom */
+    .error-wrapper { 
+        font-family: 'Inter', sans-serif; 
+        background: #eaeeee; /* Matching your contact section bg */
+        display: flex; 
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        min-height: 70vh; /* Height between header and footer */
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    .error-container { max-width: 500px; }
+    
+    .error-container h1 { 
+        font-size: 8rem; 
+        color: var(--bg-primary); /* Using your theme green */
+        margin: 0;
+        line-height: 1;
+    }
+    
+    .error-container p { 
+        color: #3d3c3c; 
+        font-size: 1.2rem; 
+        margin: 20px 0 40px; 
+    }
+
+    /* Using your existing button class from the header/contact */
+    .btn-404 {
+        display: inline-block;
+        background: var(--bg-primary);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 800;
+        transition: all 0.3s;
+        text-transform: uppercase;
+    }
+
+    .btn-404:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(38, 222, 129, 0.3);
+    }
+</style>
+
+<main class="error-wrapper">
+    <div class="error-container">
+        <h1>404</h1>
+        <p>Oops! The page you're looking for has moved or doesn't exist.</p>
+        <a href="/" class="btn-404">Back to Home</a>
+    </div>
+</main>
+
+<%- include('./partials/client/footer.ejs') %>

@@ -1,0 +1,82 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<main class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">All Users</h1>
+      <p>Total users: <%= users.length %></p>
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-striped">
+
+          
+                    <thead class="table-success">
+          <tr class="align-middle">
+            <th scope="col" class="text-secondary py-3 ps-4" style="width: 80px;">
+              <small class="fw-bold text-uppercase">Id</small>
+            </th>
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Name</small>
+            </th>
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Email</small>
+            </th>
+              <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Date Registered</small>
+            </th>
+
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Status</small>
+            </th>
+
+           
+            <th scope="col" class="text-secondary py-3 text-end pe-4">
+              <small class="fw-bold text-uppercase">Actions</small>
+            </th>
+          </tr>
+        </thead>
+          <% if(locals.users) {%>
+            <% users.forEach(user => { %>
+
+            
+            <tbody>
+              <tr>
+                <th scope="row"><%= user.id %></th>
+                <td><%= user.fullname %></td>
+                <td><%= user.email_address %></td>
+                <td><%= new Date(user.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+               <% if(user.status === true) { %>
+                    <td><span class="badge bg-success">Active</span></td>
+                <% } else { %>
+                    <td><span class="badge bg-danger">Banned</span></td>
+              <%  } %>
+              
+                <td class="text-end pe-4"> 
+  <div class="d-inline-flex gap-2">
+    <a href="/admin/users/<%= user.id%>" class="btn btn-primary btn-sm" title="Edit">
+      <i class="bi bi-pencil"></i>
+    </a> 
+    <form action="ban-user/<%= user.id %>" method="POST">
+       <button class="btn btn-danger btn-sm" title="Ban">
+      <i class="bi bi-ban"></i>
+    </button> 
+    </form>
+   
+  </div>
+</td>
+   </tr>
+              
+              
+            </tbody>
+            <% }) %>
+            <% } else {%>
+              <p>NO USER FOUND</p>
+              <% } %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/admin/footer.ejs") %>

@@ -1,0 +1,113 @@
+<%- include("../partials/admin/header.ejs") %> 
+<style> 
+  .content-card { background: #ffffff; border-radius: 8px; transition: transform 0.2s; } 
+  .form-label { font-weight: 600; color: #495057; } 
+  .testimonial-box { background: #fdfdfe; border-radius: 6px; padding: 20px; border: 1px solid #dee2e6; height: 100%; }
+  .section-header-box { background: #f0fdf4; border-radius: 6px; padding: 20px; border: 1px solid #d1fae5; }
+</style> 
+
+<div class="container-fluid px-4"> 
+  <div class="mt-4 mb-3"> 
+    <h4 class="fw-bold">Testimonials</h4> 
+    <nav aria-label="breadcrumb"> 
+      <ol class="breadcrumb"> 
+        <li class="breadcrumb-item"><a href="/admin/dashboard" class="text-decoration-none">Dashboard</a></li> 
+        <li class="breadcrumb-item active" aria-current="page">Testimonials</li> 
+      </ol> 
+    </nav> 
+  </div> 
+
+  <section class="content-card shadow-sm border p-4 mb-5"> 
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4"> 
+      <h5 class="m-0 text-secondary">Edit Testimonials</h5> 
+      <a class="btn btn-outline-secondary btn-sm" href="/admin/dashboard"> 
+        <i class="bi bi-arrow-left"></i> Back
+      </a> 
+    </div> 
+
+    <form action="/admin/frontend/testimonials" method="POST" class="row g-4"> 
+      <div class="col-12 mb-2"> 
+        <div class="section-header-box">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label small">Title Span</label>
+              <input type="text" class="form-control" name="header_span" placeholder="e.g. Testimonials">
+            </div>
+            <div class="col-md-8 mb-3">
+              <label class="form-label small">Main Title (H5)</label>
+              <input type="text" class="form-control" name="header_h5" placeholder="What our users say">
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="testimonial-box">
+          <h6 class="fw-bold text-success mb-3">Card 1</h6>
+          <div class="mb-3">
+            <label class="form-label small">Text (P)</label>
+            <textarea class="form-control" name="card1_text" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small">Name (Span 1)</label>
+            <input type="text" class="form-control" name="card1_span1">
+          </div>
+          <div>
+            <label class="form-label small">Role (Span 2)</label>
+            <input type="text" class="form-control" name="card1_span2">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="testimonial-box">
+          <h6 class="fw-bold text-success mb-3">Card 2</h6>
+          <div class="mb-3">
+            <label class="form-label small">Text (P)</label>
+            <textarea class="form-control" name="card2_text" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small">Name (Span 1)</label>
+            <input type="text" class="form-control" name="card2_span1">
+          </div>
+          <div>
+            <label class="form-label small">Role (Span 2)</label>
+            <input type="text" class="form-control" name="card2_span2">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="testimonial-box">
+          <h6 class="fw-bold text-success mb-3">Card 3</h6>
+          <div class="mb-3">
+            <label class="form-label small">Text (P)</label>
+            <textarea class="form-control" name="card3_text" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small">Name (Span 1)</label>
+            <input type="text" class="form-control" name="card3_span1">
+          </div>
+          <div>
+            <label class="form-label small">Role (Span 2)</label>
+            <input type="text" class="form-control" name="card3_span2">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mt-5 border-top pt-4"> 
+        <button type="submit" class="btn btn-success px-4">Update Section</button> 
+        <button type="reset" class="btn btn-light px-4 border">Cancel</button> 
+      </div> 
+    </form> 
+
+      <%if(locals.success) { %>
+         <div class="success-msg">
+            <%= success %>
+         </div>
+     <% } %>
+  </section> 
+</div> 
+
+<%- include("../partials/admin/footer.ejs") %>

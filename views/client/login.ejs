@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relot - login</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="stylesheet" href="/css/global/global.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="login-container">
+    <h3>Welcome Back to Relot</h3>
+  
+
+  <form class="login-form" action="/login" method="post">
+    <label for="email">Email Address</label>
+    <input type="text" placeholder="example@gmail.com" class="email-input" name="email" required>
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter your password" class="password-input" name="password" required>
+   
+    <div class="forgot-pass">
+      <a href="forgot-password.html">Forgot Password?</a>
+    </div>
+    <button type="submit" class="login-btn btn btn-primary">Login</button>
+  </form>
+  <div class="signup-link">
+    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+  </div>
+
+  <div class="message">
+  <% if (message && message.trim().length > 0) { %>
+    <div class="messages">
+    <i class="bi bi-exclamation-triangle popup-icon"></i>
+  <% } %>
+  <%= message %>
+  </div>
+</div>
+
+<script src="/js/form.js"></script>
+</body>
+</html>                 

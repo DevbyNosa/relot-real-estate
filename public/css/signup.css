@@ -1,0 +1,49 @@
+.login-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+   height: 85vh;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  font-size: var(--h5);
+}
+
+.signup-link {
+  margin-top: 0rem;
+  font-size: var(--font);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%;
+    height: 80vh;
+    padding: 1rem;
+  }
+}
+
+.popup-field {
+  color: white;
+  background-color: red;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.popup {
+  position: absolute;
+  bottom: 4rem;
+  right: 2rem;
+}
+
+.popup-green {
+  color: white;
+  background-color: green;
+  padding: 2rem;
+  border-radius: 1rem;
+}

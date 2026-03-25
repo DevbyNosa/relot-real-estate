@@ -1,0 +1,87 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<main class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">All Agents</h1>
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-striped">
+
+            <% if(locals.agents) { %>
+
+           
+                    <thead class="table-success">
+          <tr class="align-middle">
+            <th scope="col" class="text-secondary py-3 ps-4" style="width: 80px;">
+              <small class="fw-bold text-uppercase">Id</small>
+            </th>
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Name</small>
+            </th>
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Number</small>
+            </th>
+          
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Username</small>
+            </th>
+            <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">Status</small>
+            </th>
+              <th scope="col" class="text-secondary py-3">
+              <small class="fw-bold text-uppercase">
+               PROFILE_IMG
+              </small>
+            </th>
+
+            
+            <th scope="col" class="text-secondary py-3 text-end pe-4">
+              <small class="fw-bold text-uppercase">Actions</small>
+            </th>
+          </tr>
+        </thead>
+        
+        <% agents.forEach(agent => { %>
+            <tbody>
+              <tr>
+                <th scope="row"><%= agent.id %></th>
+                <td><%= agent.fullname %></td>
+                <td><%= agent.phone %></td>
+                 <td><%= agent.username %></td>
+                <td><span class="badge bg-success">Active</span></td>
+                
+   <td>
+    <% if(agent.profile_img) { %>
+        <img src="<%= agent.profile_img %>" alt="Profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+    <% } else { %>
+        <img src="/images/default-avatar.png" alt="Default" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+    <% } %>
+</td>
+
+                <td class="text-end pe-4"> 
+  <div class="d-inline-flex gap-2">
+    <a href="/admin/agent/<%= agent.id %>" class="btn btn-primary btn-sm" title="Edit">
+      <i class="bi bi-pencil"></i>
+    </a> 
+   
+  </div>
+</td>
+              </tr>
+              
+              
+            </tbody>
+            <%  }); %>
+            <% } else {  %>
+              <td>NO AGENTS CURRENTLY</td>
+
+              <% } %>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/admin/footer.ejs") %>

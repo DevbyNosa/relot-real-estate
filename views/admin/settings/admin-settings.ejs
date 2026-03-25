@@ -1,0 +1,86 @@
+<%- include("../../partials/admin/header.ejs") %> 
+<div class="container-fluid py-5"> 
+    <div class="row justify-content-center"> 
+        <div class="col-lg-6"> 
+            <div class="card shadow-sm border-0 mb-4"> 
+                <div class="card-header bg-success text-white py-3"> 
+                    <h5 class="mb-0">Account Settings</h5> 
+                </div> 
+                <div class="card-body p-4"> 
+                    <!-- Email Form -->
+                    <form action="/admin/update-email" method="POST" class="mb-5"> 
+                        <h6 class="fw-bold text-success mb-3">Email Address</h6> 
+                        <div class="mb-3"> 
+                            <label class="form-label small">Current Email</label> 
+                            <input type="email" class="form-control bg-light" value="<%= admin.email_address %>" readonly disabled> 
+                        </div> 
+                        <div class="mb-3"> 
+                            <label class="form-label small">New Email</label> 
+                            <input type="email" name="email" class="form-control" placeholder="newemail@example.com" required> 
+                        </div> 
+                        <button type="submit" class="btn btn-success px-4">Update Email</button> 
+                    </form> 
+
+                    <hr class="my-4"> 
+
+                    <!-- Password Form -->
+                    <form action="/admin/update-password" method="POST"> 
+                        <h6 class="fw-bold text-success mb-3">Security</h6> 
+                        <div class="mb-3"> 
+                            <label class="form-label small">Current Password</label> 
+                            <input type="password" name="oldPassword" class="form-control" required> 
+                        </div> 
+                        <div class="row"> 
+                            <div class="col-md-6 mb-3"> 
+                                <label class="form-label small">New Password</label> 
+                                <input type="password" name="newPassword" class="form-control" required> 
+                            </div> 
+                            <div class="col-md-6 mb-3"> 
+                                <label class="form-label small">Confirm New Password</label> 
+                                <input type="password" name="confirmPassword" class="form-control" required> 
+                            </div> 
+                        </div> 
+                        <button type="submit" class="btn btn-success px-4">Change Password</button> 
+                    </form> 
+                </div> 
+            </div> 
+
+            <div class="card shadow-sm border-0"> 
+                <div class="card-body d-flex justify-content-between align-items-center"> 
+                    <div> 
+                        <span class="fw-bold">Session</span> 
+                        <p class="text-muted small mb-0">End your current session safely.</p> 
+                    </div> 
+                    <a href="/admin/logout" class="btn btn-outline-danger px-4"> Logout </a> 
+                </div> 
+            </div> 
+
+      
+            <% if (locals.success && success.length > 0) { %>
+                <span class="p-3 bg-light border-start border-success border-4 text-success position-absolute top-50 start-50 translate-middle success-msg shadow"><%= success %></span> 
+            <% } %>
+
+            <% if (locals.error && error.length > 0) { %>
+                <span class="p-3 bg-light border-start border-danger border-4 text-danger position-absolute top-50 start-50 translate-middle error-msg shadow"><%= error %></span> 
+            <% } %>
+        </div> 
+    </div> 
+</div> 
+
+<script> 
+    function removePopup(selector, time) { 
+        const element = document.querySelector(selector);
+        if (element && element.innerText.trim() !== "") { 
+            setTimeout(() => { 
+                element.style.transition = "opacity 0.5s ease";
+                element.style.opacity = "0";
+                setTimeout(() => {
+                    element.style.display = "none"; 
+                }, 500);
+            }, time); 
+        } 
+    } 
+    removePopup(".success-msg", 2500); 
+    removePopup(".error-msg", 2500); 
+</script> 
+<%- include("../../partials/admin/footer.ejs") %>

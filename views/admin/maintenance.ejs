@@ -1,0 +1,66 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<main class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      
+      <div class="card shadow">
+        <div class="card-header bg-success text-light ">
+          <h4 class="mb-0">
+            <i class="bi bi-tools me-2"></i>
+            Maintenance Mode
+          </h4>
+        </div>
+        
+        <div class="card-body">
+          <form action="/admin/maintenance" method="post">
+            
+            <div class="mb-4">
+              <label for="maintenace_text" class="form-label fw-bold">
+                Maintenance Message
+              </label>
+              <textarea 
+                class="form-control" 
+                id="maintenace_text" 
+                name="maintenace_text" 
+                rows="4" 
+                placeholder="Enter maintenance message..."
+              ></textarea>
+              <div class="form-text">
+                This message will be shown to users during maintenance.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="is_maintenance" class="form-label fw-bold">
+                Maintenance Status
+              </label>
+              <select class="form-select" id="is_maintenance" name="is_maintenance">
+                <option value="off"> Off - Site is live</option>
+                <option value="on"> On - Site under maintenance</option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="bi bi-shield-lock me-2"></i>
+                Activate Maintenance Mode
+              </button>
+            </div>
+
+          </form>
+        </div>
+        
+        <div class="card-footer text-muted bg-light">
+          <small>
+            <i class="bi bi-info-circle me-1"></i>
+            Enabling maintenance mode will block all users except admins.
+          </small>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/admin/footer.ejs") %>

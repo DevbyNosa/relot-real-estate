@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relot - Home</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="login-container">
+        <h3>Join the Relot Community</h3>
+    
+        <form action="/signup" method="post" class="login-form">
+            <label for="name">Full Name</label>
+            <input type="text" placeholder="John Doe" class="name-input input-js" name="name" required>
+            <label for="email">Email Address</label>
+            <input type="email" placeholder="example@gmail.com" class="email-input input-js" name="email" required>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter your password (Min 8 char)" class="password-input input-js" name="password" minlength="8" required>
+            <div class="forgot-pass">
+                <a href="forgot-password.html">Forgot Password?</a>
+            </div>
+            <button type="submit" class="login-btn btn btn-primary">Create Account</button>
+            <div class="signup-link">
+                <p>By clicking "Create Account", you agree to our <a href="/terms-an-conditon">Terms and Conditions</p>
+                  <p style="margin-top: 5px; font-size: 15px;"></a> Already have an account ?<a style="font-size: 15px;" href="/login"> Login</a></p>
+            </div>
+        </form>
+        <div class="message">
+  <% if (message && message.trim().length > 0) { %>
+    <div class="messages">
+    <i class="bi bi-exclamation-triangle popup-icon"></i>
+  
+  <%= message %>
+  </div>
+  <% } %>
+</div>
+    </div> 
+    <script src="/js/form.js"></script>
+</body>
+</html>

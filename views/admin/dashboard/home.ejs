@@ -1,0 +1,124 @@
+<%- include("../../partials/admin/header.ejs") %>
+
+<main class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">Admin Dashboard</h1>
+    </div>
+  </div>
+
+  
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <div class="card text-dark bg-light shadow position-relative">
+        <div class="card-body">
+          <i class="bi bi-people card-icon users-icon"></i>
+          <h5 class="card-title">Total Users</h5>
+          <p class="card-text display-4"><%= usersLength %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card text-dark bg-light shadow position-relative">
+        <div class="card-body">
+          <i class="bi bi-person-badge card-icon agents-icon"></i>
+          <h5 class="card-title">Total Agents</h5>
+          <p class="card-text display-4"><%= agentLength %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card text-dark bg-light shadow position-relative">
+        <div class="card-body">
+          <i class="bi bi-house card-icon properties-icon"></i>
+          <h5 class="card-title">Properties Listed</h5>
+          <p class="card-text display-4"><%= checkedProperties %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card text-dark bg-light shadow position-relative">
+        <div class="card-body">
+          <i class="bi bi-exclamation-triangle card-icon pending-icon"></i>
+          <h5 class="card-title">Pending Approvals</h5>
+          <p class="card-text display-4"><%= pendingCount %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activities -->
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Recent User Registrations</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+           <% if (last3Users && last3Users.length > 0) { %>
+    <% last3Users.forEach(user => { %>
+        <li class="list-group-item">
+            <%= user.fullname || user.fullName %> registered
+        </li>
+    <% }) %>
+<% } else { %>
+    <li class="list-group-item">No new users</li>
+<% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Recent Property Listings</h5>
+        </div>
+        <div class="card-body">
+        <ul class="list-group list-group-flush">
+  <% if (locals.last3Houses && last3Houses.length > 0) { %>
+    <% last3Houses.forEach(property => { %> 
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= property.title %> listed
+        
+        <% if (property.is_approved) { %>
+          <span class="badge bg-success">Live</span>
+        <% } else { %>
+          <span class="badge bg-warning text-dark">Pending</span>
+        <% } %>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li class="list-group-item">No properties listed yet.</li>
+  <% } %>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Quick Actions</h5>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-wrap gap-2">
+            <a href="/admin/users" class="btn btn-primary">View All Users</a>
+            <a href="/admin/agents" class="btn btn-success">View All Agents</a>
+            <a href="/admin/properties" class="btn btn-warning">View All Properties</a>
+            <a href="/admin/listings" class="btn btn-danger">Approve Listings</a>
+            <a href="/admin/maintenance" class="btn btn-info text-white">Site Settings</a>
+            <a href="/admin/frontend/home" class="btn btn-info text-white">Frontend Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("../../partials/admin/footer.ejs") %>
+  

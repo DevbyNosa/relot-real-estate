@@ -1,0 +1,75 @@
+<%- include("../partials/admin/header.ejs") %> 
+<style> 
+  .content-card { background: #ffffff; border-radius: 8px; transition: transform 0.2s; } 
+  .form-label { font-weight: 600; color: #495057; } 
+  .form-control:focus { border-color: #198754; box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25); } 
+</style> 
+
+<div class="container-fluid px-4"> 
+  
+  <div class="mt-4 mb-3"> 
+    <h4 class="fw-bold">About Section</h4> 
+    <nav aria-label="breadcrumb"> 
+      <ol class="breadcrumb"> 
+        <li class="breadcrumb-item"><a href="/admin/dashboard" class="text-decoration-none">Dashboard</a></li> 
+        <li class="breadcrumb-item active" aria-current="page">About</li> 
+      </ol> 
+    </nav> 
+  </div> 
+
+ 
+  <section class="content-card shadow-sm border p-4 mb-5"> 
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4"> 
+      <h5 class="m-0 text-secondary">Edit About Content</h5> 
+      <a class="btn btn-outline-secondary btn-sm" href="/admin/dashboard"> 
+        <i class="bi bi-arrow-left"></i> Back to Dashboard 
+      </a> 
+    </div> 
+
+   
+    <form action="/admin/frontend/about" method="POST"  class="row g-4"> 
+      
+      
+      <div class="col-12"> 
+        <label for="about_title" class="form-label">About Heading (H1)</label> 
+        <input class="form-control" type="text" name="about_title" id="about_title" placeholder="Enter main heading..." maxlength="100" value="<%= hero.about_title %>"> 
+      </div> 
+
+     
+      <div class="col-12"> 
+        <label for="p1" class="form-label">First Paragraph</label> 
+        <textarea class="form-control" name="about_p1" id="p1" rows="3" placeholder="Enter first paragraph text..."><%= hero.about_first_txt %></textarea> 
+      </div> 
+
+      
+      <div class="col-12"> 
+        <label for="p2" class="form-label">Second Paragraph</label> 
+        <textarea class="form-control" name="about_p2" id="p2" rows="3" placeholder="Enter second paragraph text..."><%= hero.about_second_txt %></textarea> 
+      </div> 
+
+     
+      <div class="col-12"> 
+        <label for="about_image" class="form-label">About Section Image</label> 
+        <div class="input-group">
+          <input type="file" class="form-control" name="about_image" id="about_image" accept="image/*">
+          <label class="input-group-text" for="about_image"><i class="bi bi-image"></i></label>
+        </div>
+        <small class="text-muted">Recommended size: 800x600px (PNG, JPG)</small>
+      </div>
+
+     
+      <div class="col-12 mt-5 border-top pt-4"> 
+        <button type="submit" class="btn btn-success px-4">Update About</button> 
+        <button type="reset" class="btn btn-light px-4 border">Cancel</button> 
+      </div> 
+    </form> 
+
+      <%if(locals.success) { %>
+         <div class="success-msg">
+            <%= success %>
+         </div>
+     <% } %>
+  </section> 
+</div> 
+
+<%- include("../partials/admin/footer.ejs") %>

@@ -1,0 +1,274 @@
+<%- include('./partials/client/header.ejs') %>
+
+
+<!--Hero Section-->
+
+<div class="hero-div">
+<h1><span class="hero-span">Relot</span> <%= frontend.hero_title %></h1>
+<p><%= frontend.hero_text %></p>
+
+<div class="hero-btn">
+<a class="btn btn-secondary"; style="padding: 1.5rem;" href="#faq"><%= frontend.first_button %></a>
+<a href="/signup" class="btn btn-primary" style="padding: 1.5rem;"><%= frontend.second_button %></a>
+</div>
+
+
+</div>
+
+<div class="relot-perks">
+<div class="perk-item">
+<div class="icon-box"><i class="fa-solid fa-shield"></i></div>
+<h3>Secure Trading</h3>
+<p>Your investments are protected with bank-grade security and SSL encryption.</p>
+</div>
+
+<div class="perk-item second-perk">
+<div class="icon-box"><i class="fa-solid fa-chart-bar"></i></div>
+<h3>High Returns</h3>
+<p>Earn consistent dividends from verified real estate assets across Nigeria.</p>
+</div>
+
+<div class="perk-item">
+<div class="icon-box"><i class="fa-solid fa-mobile"></i></div>
+<h3>Instant Cashout</h3>
+<p>Withdraw your earnings anytime directly to your local bank account.</p>
+</div>
+</div>
+
+
+<div class="hero-container">
+
+<div class="main-container">
+<div class="about-section" id="about">
+
+<div class="first-about reveal">
+<h2 class="h2-about "><%= frontend.about_title %></h2>
+<h4 class="h4-about ">The Story Behind Relot</h4>
+<p><%= frontend.about_first_txt %></p>
+
+<div><p><%= frontend.about_second_txt %></p>
+</div>
+</div>
+
+
+
+<img src="images/hero.png" alt="hero Relot Image" class="hero-image reveal">
+</div>
+
+<section class="features-section reveal">
+<div class="container">
+<div class="features-header reveal">
+    <h2 style="font-size: 35px;"><%=
+        frontend.features_title %></h2>
+</div>
+
+<div class="features-grid reveal">
+    <div class="feature-card">
+        <div class="icon"><i class="fa-solid fa-check"></i></div>
+        <h3><%= frontend.card1_h3 %></h3>
+        <p><%= frontend.card1_txt %></p>
+    </div>
+
+    <div class="feature-card reveal">
+        <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3><%= frontend.card2_h3 %></h3>
+        <p><%= frontend.card2_txt %></p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon"><i class="fa-solid fa-chart-area"></i></div>
+        <h3><%= frontend.card3_h3 %></h3>
+        <p><%= frontend.card3_txt %></p>
+    </div>
+</div>
+</div>
+</section>
+
+<section class="cta-section reveal">
+<div class="container">
+<h2>Ready to Find Your Next Property?</h2>
+<p>Join thousands of users who are redefining their approach to real estate. Your future investment starts here.</p>
+
+
+<div class="listings-wrapper reveal" id="houses">
+<div class="listings-grid home-grid">
+<% if (listings && listings.length > 0) { 
+let hasApproved = false;
+%>
+<% listings.forEach(listing => { 
+    if (listing.is_approved === true) { 
+        hasApproved = true;
+        let images = [];
+        try {
+            images = JSON.parse(listing.property_images || '[]');
+        } catch(e) {
+            images = [];
+        }
+        const firstImage = images.length > 0 ? images[0] : 'https://plus.unsplash.com/premium_photo-1689609950112-d66095626efb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+%>
+
+<section class="house-section">
+<a href="/house-details/<%= listing.id %>">
+<img src="<%= firstImage %>" 
+alt="<%= listing.title %>" 
+class="house-card-img"
+onerror="this.src='https://plus.unsplash.com/premium_photo-1689609950112-d66095626efb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'">
+
+<h6><%= listing.title %></h6>
+
+<span class="house-cta">
+<p>₦<%= Number(listing.amount).toLocaleString() %></p>
+<p style="color: #252424;"><%= listing.housetype %></p>
+<div style="display: flex; gap: 1rem;">
+<p style="color: #979191;"><%= listing.address %></p>
+<p style=" color: #252424;"><%= listing.city %></p>
+</div>
+</span>
+
+<p class="house-info">
+<%= listing.house_status === 'available' ? 'Available' : 'Sold' %>
+</p>
+
+
+</a>
+</section>
+<% } 
+}); %>
+
+<% if (!hasApproved) { %>
+    <p>No approved listings available</p>
+<% } %>
+<% } else { %>
+<p>No listings available</p>
+<% } %>
+</div>
+</div>
+</div>
+
+<a style="margin-top: 3rem; display: inline-block; color: var(--bg-primary);" href="/dashboard">View More</a>
+</section>
+
+<section class="testimonials-section reveal">
+<div class="container">
+<div class="testemonial-headers">
+    <span class="tagline">What Our Users Say</span>
+    <h5>Trusted by Real Investors and Homebuyers</h5>
+</div>
+
+<div class="testimonial-grid">
+    <div class="testimonial-card">
+        <p class="quote">"Relot made buying land incredibly straightforward. The verification process gave me total peace of mind—no hidden surprises!"</p>
+        <div class="author-info">
+            <span class="author-name">Sarah J.</span>
+            <span class="author-title">First-Time Investor</span>
+        </div>
+    </div>
+
+    <div class="testimonial-card">
+        <p class="quote">"The data insights alone were worth it. I understood the market trends clearly and found a great property much faster than I expected."</p>
+        <div class="author-info">
+            <span class="author-name">Mark T.</span>
+            <span class="author-title">Property Developer</span>
+        </div>
+    </div>
+
+    <div class="testimonial-card">
+        <p class="quote">"Seamless is the perfect word. The closing process was handled digitally and efficiently. I highly recommend Relot to anyone selling."</p>
+        <div class="author-info">
+            <span class="author-name">Erica D.</span>
+            <span class="author-title">Home Seller</span>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    
+    <!-- Info Card -->
+    <div class="contact-card info-glass">
+      <h5>Visit Our Office</h5>
+      <p class="subtitle">We are located in the heart of Benin City. Reach out via phone or email.</p>
+      
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63439.97773066384!2d5.568287442102983!3d6.394179660385573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10472cdc1bb49903%3A0x92c2afdfd6926668!2sUgbowo%20300103%2C%20Edo!5e0!3m2!1sen!2sng!4v1773270563087!5m2!1sen!2sng" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+<div class="direct-contact">
+  <!-- Phone Micro-Card -->
+  <div class="micro-card">
+    <div class="icon-boxes"><i class="fa-solid fa-phone"></i></div>
+    <div class="info-content">
+      <span>Call Us Directly</span>
+      <p>+234 800 000 0000</p>
+    </div>
+  </div>
+
+ 
+  <div class="micro-card">
+    <div class="icon-boxes"><i class="fa-solid fa-message"></i></div>
+    <div class="info-content">
+      <span>Send an Email</span>
+      <p>hello@devbynosa.com</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+   
+    <div class="contact-card form-glass">
+      <h5>Send a Message</h5>
+      <form id="contactForm" class="super-form" action="/contact" method="POST">
+        <div class="input-group">
+          <input type="text" name="contact_name" placeholder="Your Name" required>
+        </div>
+        <div class="input-group">
+          <input type="email" name="contact_email" placeholder="Your Email" required>
+        </div>
+        <div class="input-group">
+          <textarea name="contact_message" placeholder="How can we help you?" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-super" style="font-size: 16px; padding: 15px;">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="faq-section reveal" id="faq">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  
+  <div class="faq-container">
+  
+    <div class="faq-item">
+      <button class="faq-question">How do I list a property on Relot? <span class="icon">+</span></button>
+      <div class="faq-answer">
+        <p>Register as an <strong>Agent</strong>, verify your account, and use your dashboard to upload photos and pricing. Your listing goes live instantly.</p>
+      </div>
+    </div>
+
+   
+    <div class="faq-item">
+      <button class="faq-question">How does Relot prevent fake listings? <span class="icon">+</span></button>
+      <div class="faq-answer">
+        <p>Our Admin Dashboard allows moderators to review posts. Users can also flag suspicious listings for immediate investigation.</p>
+      </div>
+    </div>
+
+    
+    <div class="faq-item">
+      <button class="faq-question">Is Relot mobile-friendly? <span class="icon">+</span></button>
+      <div class="faq-answer">
+        <p>Absolutely. We built Relot with a <strong>Mobile-First</strong> approach to ensure a smooth experience on any smartphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<%- include('./partials/client/footer.ejs') %>
+</body>
+</html>
+

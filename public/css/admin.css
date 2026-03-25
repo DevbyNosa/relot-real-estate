@@ -1,0 +1,195 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.max-w-sm {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.w-90 {
+  width: 90%;
+}
+.w-100 {
+  width: 100%;
+}
+
+.mb-6 {
+  margin-bottom: 6rem;
+}
+
+.animation-popup {
+  animation: style-popup 3s 0s;
+  z-index: 99;
+  position: absolute;
+}
+
+@keyframes style-popup {
+  from {
+    transform: translateY(8rem);
+    
+  } 
+}
+
+.w-80px {
+  width: 8rem;
+}
+
+.p-05 {
+  padding: 0.2rem;
+  position: absolute;
+  top: -15%;
+  right: 0%;
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.custom-style-header {
+  box-shadow: 1px 2px 3px #d1cdcd;
+  padding: 1rem;
+}
+
+.card-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.users-icon {
+  color: #007bff;
+}
+
+.agents-icon {
+  color: #28a745;
+}
+
+.properties-icon {
+  color: #fd7e14;
+}
+
+.pending-icon {
+  color: #dc3545;
+}
+
+ .image-preview-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        max-width: 250px;
+        align-items: center;
+    }
+    
+    .thumbnail-wrapper {
+        position: relative;
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .thumbnail-wrapper:hover {
+        border-color: #038080;
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+    
+    .thumbnail-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .img-count-badge {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #029a9acc;
+        color: white;
+        font-size: 8px;
+        padding: 2px 4px;
+        border-radius: 3px 0 0 0;
+    }
+    
+    .total-badge {
+        background: #089c70;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+    
+    
+    .modal-content {
+        border: none;
+        border-radius: 12px;
+    }
+    
+    .modal-header {
+        border-bottom: 1px solid #eee;
+        padding: 15px 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+        background: #f8f9fa;
+    }
+
+    .success-msg {
+    position: fixed;
+    top: 20px;
+    right: 20px; 
+    z-index: 9999;
+    min-width: 300px;
+    max-width: 450px;
+    
+    
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-left: 5px solid #28a745;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    
+    
+    animation: slide-in-right 0.5s ease-out forwards;
+    
+   
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.success-msg::before {
+    content: '✓';
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

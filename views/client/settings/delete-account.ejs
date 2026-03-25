@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relot - Delete Account</title>
+
+  <style>
+    li::marker {
+    color: red; 
+    font-size: 1.2em;
+}
+  </style>
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #dcdada;color: #4b4b4a;">
+  <header>
+    <h1 style="margin-left: 20px; color: #c32d2d; margin-left: auto; margin-right: auto; width: 90%; max-width: 600px;text-align: center;">Account Deletion Notice</h1>
+  </header>
+  <main style="width: 90%; max-width: 600px;  display: flex; flex-direction: column; gap: 1rem; margin-left: auto; margin-right: auto; background-color: #edecec; padding: 15px; border-radius: 10px;">
+    <strong>Warning: This action is permanent.</strong>
+
+    <p>Once the deletion process begins, you will lose access to your Relot account immediately. You will no longer be able to retrieve any content, property listings, or profile information you have added.</p>
+
+    <strong>By proceeding, you acknowledge that:</strong>
+    <ul>
+    <li>Your profile and all active listings will be permanently removed.</li>
+    <li>You will not be able to log in or recover any historical data.</li>
+    <li>This action cannot be undone.</li>
+  </ul>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <form action="/delete-account" method="POST">
+      <button type="submit" style="padding: 10px; background-color: red; color: #e8e6e6; border-radius: 5px; border: 0;font-size: 16px; cursor: pointer; border: 1px solid red;">Delete</button>
+    </form>
+    <a href="/dashboard" style="text-decoration: none; padding: 10px; background-color: #dfdddd; color: #c32d2d; border-radius: 5px; border: 0;border: 1px solid #c32d2d;">Cancel</a>
+  </div>
+  </main>
+</body>
+</html>
