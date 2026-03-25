@@ -62,50 +62,43 @@ CREATE TABLE frontend_index (
   second_button VARCHAR(50),
 
   -- about section
-
   about_title VARCHAR(50),
   about_first_txt VARCHAR(255),
   about_second_txt VARCHAR(255),
   about_img TEXT,
 
   -- features section
-
   features_title VARCHAR(50),
 
   --card 1
-
   card1_H3 VARCHAR(50),
   card1_txt VARCHAR(255),
 
   -- card 2
-
   card2_H3 VARCHAR(50),
   card2_txt VARCHAR(255),
 
--- card 3
-
+  -- card 3
   card3_H3 VARCHAR(50),
   card3_txt VARCHAR(255),
 
--- testemonials
+  -- testimonials (Added missing commas below)
+  testimonials_title VARCHAR(50),
+  testimonial_main_title VARCHAR(50),
+  testimonial_txt VARCHAR(50), 
 
-testimonials_title VARCHAR(50),
-testimonial_main_title VARCHAR(50),
-testimonial_txt VARCHAR(50)
+  --card 1
+  testimonial_one VARCHAR(255),
+  testimonial1_span1 VARCHAR(50),
+  testimonial1_span2 VARCHAR(50),
 
---card 1
-testimonial_one VARCHAR(255)<
-testimonial1_span1 VARCHAR(50),
-testimonial1_span2 VARCHAR(50),
+  --card 2
+  testimonial_two VARCHAR(255),
+  testimonial2_span1 VARCHAR(50),
+  testimonial2_span2 VARCHAR(50), 
 
---card 2
-testimonial_two VARCHAR(255)<
-testimonial2_span1 VARCHAR(50),
-testimonial2_span2 VARCHAR(50),
-
---card 3
-testimonial_three VARCHAR(255)<
-testimonial3_span1 VARCHAR(50),
-testimonial3_span2 VARCHAR(50),
-
+  --card 3
+  testimonial_three VARCHAR(255),
+  testimonial3_span1 VARCHAR(50),
+  testimonial3_span2 VARCHAR(50)
 );

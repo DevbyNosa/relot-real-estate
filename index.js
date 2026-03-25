@@ -90,7 +90,7 @@ const frontends = await db.query(`SELECT * FROM frontend_index`)
   res.render("index.ejs", { 
     listings: agentHouses.rows,
     user: req.session.user || null,
-    frontend: frontends.rows[0],
+    frontend: frontends.rows[0] || {},
     success: ""
   });
 } catch (err) {

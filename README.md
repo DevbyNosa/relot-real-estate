@@ -1,5 +1,5 @@
 Relot Real Estate Marketplace
-Relot is a full stack real estate platform designed to make finding, listing, and managing properties simple and stress free. It connects buyers, renters, and agents through a data driven interface that prioritizes speed and ease of use.
+Relot is a full stack real estate platform designed to make finding, listing, and managing properties simple and stress free. It connects buyers, renters, and agents through a data driven interface that prioritizes speed and ease of use.  
 Features
 Dynamic Property Search: Advanced filtering by price, location, and specific amenities.
 User Dashboards: Secure areas for owners and agents to manage listings and track inquiries in real time.
