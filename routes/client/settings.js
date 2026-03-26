@@ -19,21 +19,29 @@ router.get("/account-informations", checkBanStatus, requireLogin, async (req, re
 })
 
 router.get("/settings-about", checkBanStatus, requireLogin, async (req, res) => {
-        const user = await db.query(`
-               SELECT *
-FROM signup
-JOIN agentdetails ON signup.id = agentdetails.id
-WHERE signup.id = $1;
+    try {
+        const result = await db.query(`
+            SELECT *
+            FROM signup
+            LEFT JOIN agentdetails ON signup.id = agentdetails.id
+            WHERE signup.id = $1
+        `, [req.session.user.id]);
 
-                `, [req.session.user.id])
-    res.render("client/settings/about-settings.ejs", {
-  fullName: user.fullName || "",
-  email: user.email_address || "",
-  date: user.date || "",
-  username: user.username || "",
-  phone_number: user.phone || "",
+        const user = result.rows[0] || {}; // safe fallback
+
+        res.render("client/settings/about-settings.ejs", {
+            fullName: user.fullName || "",
+            email: user.email_address || "",
+            date: user.date || "",
+            username: user.username || "",
+            phone_number: user.phone || "",
+        });
+
+    } catch (err) {
+        console.error("Error fetching user data:", err);
+        res.status(500).send("Server Error");
+    }
 });
-})
 
 router.get("/edit-profile", checkBanStatus, requireLogin, async (req, res) => {
        const user = await db.query("SELECT fullname, email_address FROM signup WHERE id = $1", [req.session.user.id]);
