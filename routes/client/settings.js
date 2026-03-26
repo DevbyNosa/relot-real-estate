@@ -27,8 +27,7 @@ router.get("/settings-about", checkBanStatus, requireLogin, async (req, res) => 
             WHERE signup.id = $1
         `, [req.session.user.id]);
 
-        const user = result.rows[0] || {}; // safe fallback
-
+        const user = result.rows[0] || {}; 
         res.render("client/settings/about-settings.ejs", {
             fullName: user.fullName || "",
             email: user.email_address || "",
@@ -44,13 +43,20 @@ router.get("/settings-about", checkBanStatus, requireLogin, async (req, res) => 
 });
 
 router.get("/edit-profile", checkBanStatus, requireLogin, async (req, res) => {
-       const user = await db.query("SELECT fullname, email_address FROM signup WHERE id = $1", [req.session.user.id]);
+    try {
+        const result = await db.query("SELECT fullname, email_address FROM signup WHERE id = $1", [req.session.user?.id]);
+        const user = result.rows[0] || {};
+
         res.render("client/settings/editProfile.ejs", {
-            messages: req.query.success || req.query.failure || "", 
-            newName: user.rows[0].fullname, 
-            newEmail: user.rows[0].email_address 
+            messages: req.query.success || req.query.failure || "",
+            newName: user.fullname || "",
+            newEmail: user.email_address || ""
         });
-})
+    } catch (err) {
+        console.error("Error fetching user for edit-profile:", err);
+        res.status(500).send("Server Error");
+    }
+});
 
 router.post("/edit-profile", checkBanStatus, requireLogin, async (req, res) => {
         const userId = req.session.user.id
