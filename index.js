@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config(); 
 import express from 'express';
+import dns from 'dns';
+dns.setDefaultResultOrder('ipv4first');
 import session from 'express-session'; 
 import nodemailer from 'nodemailer'
 import dashboardRoute from './routes/client/dashboard.js';
@@ -38,7 +40,7 @@ app.use(methodOverride('_method'));
 
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'fallback-secret-key', 
+  secret: process.env.SESSION_SECRET, 
   resave: false,
   saveUninitialized: false,
   cookie: {
