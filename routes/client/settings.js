@@ -26,14 +26,13 @@ JOIN agentdetails ON signup.id = agentdetails.id
 WHERE signup.id = $1;
 
                 `, [req.session.user.id])
-      res.render("client/settings/about-settings.ejs", {
-        fullName: user.rows[0].fullname,
-        email: user.rows[0].email_address,
-        date: user.rows[0].date,
-        username: user.rows[0].username,
-        phone_number: user.rows[0].phone,
-       
-      })
+    res.render("client/settings/about-settings.ejs", {
+  fullName: user.fullName || "",
+  email: user.email_address || "",
+  date: user.date || "",
+  username: user.username || "",
+  phone_number: user.phone || "",
+});
 })
 
 router.get("/edit-profile", checkBanStatus, requireLogin, async (req, res) => {
