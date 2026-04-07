@@ -34,6 +34,13 @@ router.get("/listings", async(req, res) => {
 
 
 router.post("/listings/:id", async (req, res) => {
+  if(!req.session.admin) {
+
+    return res.redirect("/admin")
+
+
+  } 
+  
   const { id } = req.params;
 
   try {
@@ -51,6 +58,13 @@ router.post("/listings/:id", async (req, res) => {
 })
 
 router.post("/listings/delete/:id", async (req, res) => {
+  if(!req.session.admin) {
+
+    return res.redirect("/admin")
+
+
+  } 
+  
   const {id} = req.params;
 
   try {
